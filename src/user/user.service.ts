@@ -1,9 +1,20 @@
-import { ConflictException, Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ValidationService } from '../common/validation.service';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 import { PrismaService } from '../common/prisma.service';
-import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, RoleInfo } from '../model/user.model';
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse,
+  RoleInfo,
+} from '../model/user.model';
 import { UserValidation } from './user.validation';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';

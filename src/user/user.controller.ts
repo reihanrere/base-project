@@ -2,7 +2,12 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { BaseResponse } from '../common/dto/base-response.dto';
-import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '../model/user.model';
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse,
+} from '../model/user.model';
 
 @ApiTags('Users')
 @Controller('/user')
