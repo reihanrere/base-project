@@ -15,11 +15,13 @@ export class RoleResponse {
 }
 
 export class RoleCreateRequest {
-  @ApiProperty({ example: 'Admin' })
+  @ApiProperty({ example: 'Name' })
   name: string;
 }
 
 export class RoleUpdateRequest {
+  @ApiProperty({ example: '123456' })
   id: string;
+  @ApiProperty({ example: 'Name' })
   name: string;
 }

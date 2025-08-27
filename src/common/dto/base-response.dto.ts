@@ -1,33 +1,29 @@
-export class BaseResponse<T> {
+export class BaseResponse<T = null> {
   success: boolean;
   message: string;
   data: T | null;
-  errors: unknown[] | null;
+  errors: string[];
 
-  constructor(partial: Partial<BaseResponse<T>>) {
-    Object.assign(this, partial);
-  }
-
-  // response success
-  static success<T>(data: T, message = 'Success'): BaseResponse<T> {
-    return new BaseResponse<T>({
-      success: true,
-      message,
-      data,
-      errors: null,
-    });
-  }
-
-  // response error
-  static error(
+  private constructor(
+    success: boolean,
     message: string,
-    errors: unknown[] | null = null,
-  ): BaseResponse<null> {
-    return new BaseResponse<null>({
-      success: false,
-      message,
-      data: null,
-      errors,
-    });
+    data: T | null,
+    errors: string[] = [],
+  ) {
+    this.success = success;
+    this.message = message;
+    this.data = data;
+    this.errors = errors;
+  }
+
+  static success<T>(data: T, message = 'Success'): BaseResponse<T> {
+    return new BaseResponse<T>(true, message, data, []);
+  }
+
+  static error<T = null>(
+    message = 'Error',
+    errors: string[] = [],
+  ): BaseResponse<T> {
+    return new BaseResponse<T>(false, message, null, errors);
   }
 }
