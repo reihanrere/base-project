@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Put, Delete, Param, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body, Put, Delete, Param, Get, Query, UseGuards } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { BaseResponse } from '../common/dto/base-response.dto';
 import {
@@ -6,12 +6,15 @@ import {
   RoleCreateRequest,
   RoleUpdateRequest,
 } from '../model/role.model';
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PaginationResponse } from '../model/pagination.model';
 import { FilterResponse } from '../model/filter.model';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('Role')
+@ApiBearerAuth() // Swagger token input
 @Controller('/role')
+@UseGuards(JwtAuthGuard) // protect all endpoints
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
